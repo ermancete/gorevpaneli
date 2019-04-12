@@ -1,0 +1,129 @@
+.container {
+	display: flex;
+}
+
+.container div {
+	padding: 0px;
+}
+
+.firstlayout {
+	background-color: #353A3E;
+	flex: 1;
+	height: 100vh;
+	text-align: center;
+}
+
+.Avatar {
+	width: 70px;
+	height: 70px;	
+	padding-top: 50px;
+	padding-left: 40px; 
+}
+
+
+h3 {
+	color: white;
+}
+
+.secondlayout {
+	background-color: white;
+	flex: 9;
+	flex-direction: column;
+
+}
+
+h1 {
+	color: green;
+}
+
+.secondlayout div {
+	border: 1px #ccc solid;
+	padding: 10px;
+	
+}
+
+.missionIdlePanel {
+	background-color: #F1F1F1;
+
+}
+
+.missionIdlePanel p {
+	margin-left: 30px;
+	font-size: x-small;
+}
+
+.missionIdlePanel img {
+	margin-top: 
+}
+
+.missionTabRow {
+	background-color: #F1F1F1;
+	display: flex;
+	
+}
+
+.missionTabRow h1 {
+	color: red;
+}
+
+.thirdrow {
+	background-color: white;
+	height: 67vh;
+	width: 165vh;
+
+
+}
+
+.Avatar img {
+	margin: 27px 0px 0px 0px;
+}
+
+.Görevler img {
+	margin: 80px 0px 0px 0px;
+}
+
+.Görevler h3 {
+	font-size: smaller;
+}
+
+.Ayarlar {
+	width: 50px;
+}
+
+.Ayarlar img {
+	margin: 50px 0px 0px 45px;
+
+}
+
+.Ayarlar h3 {
+	margin: 0px 0px 0px 45px;
+	font-size: smaller;
+	color: #4C5053;
+}
+
+
+.Kapat {
+	width: 50px;
+}
+
+.Kapat img {
+	margin: 250px 0px 0px 45px;
+}
+
+.Kapat h3 {
+	margin: 0px 0px 0px 53px;
+	font-size: x-small;
+}
+
+.missionIdlePanel div {
+	margin: 10px 0px 0px 0px;
+}
+
+.circle {
+	width: 170px;
+	height: 30px;
+	margin: 10% auto;
+	border-radius: 20%;
+	position: relative;
+	margin: px 0px 0px 0px;
+}
