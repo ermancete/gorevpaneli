@@ -1,9 +1,31 @@
-import React from 'react';
+import React, { Component } from "react";
 
-const Task = ({ name }) => {
-	return (
-		<h2>{name}</h2>
+class Task extends Component {
+
+	  constructor(props) {
+		super(props);
+		this.state = {
+		};
+	  }  
+
+	handleChange = event => {
+		const { taskId, onToggleTask } = this.props;
+		onToggleTask(taskId);
+	  };
+	
+	  render() {
+		const { name, isActive } = this.props;
+		return (
+		  <div>
+			<span className={`${isActive ? "activeTask" : "inactiveTask"}`}>{name}</span>
+			<input type="checkbox" 
+			checked={isActive}
+			onChange={this.handleChange}/>
+			{isActive && <i> - IS an active task</i> }
+		  </div>
 		);
+	  }
+
 }
 
 export default Task;
