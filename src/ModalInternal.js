@@ -6,6 +6,7 @@ class ModalInternal extends Component {
         super(props);
         this.state = {
           open: false,
+          istenenDeger: '' 
         };
       }
 
@@ -17,11 +18,16 @@ class ModalInternal extends Component {
 		this.setState({ open: false });
     };
     
+   /* onTextChange = (event) => {
+    	this.setState({ istenenDeger: event.target.value })
+    }*/
+
     addNewTask = () => {
-        // implement
+        this.setState({ istenenDeger: 'osman' })
     }
 
     render() {
+    	const { istenenDeger } = this.state;
         let open = this.state.open;
         return (
 
@@ -30,7 +36,7 @@ class ModalInternal extends Component {
                 <Modal open={open} onClose={this.onCloseModal} center>
                     <div>
                         <h2>Yeni görev ekle</h2>
-                        <textarea> </textarea>
+                        <textarea value=""> </textarea>
                         <button onClick={this.addNewTask}>EKLE</button>
                     </div>
                 </Modal>

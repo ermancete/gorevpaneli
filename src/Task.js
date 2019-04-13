@@ -2,8 +2,14 @@ import React from 'react';
 
 const Task = ({ name }) => {
 	return (
-		<h2>{name}</h2>
+		<div>
+		<ul>
+		 <input type="checkbox" />
+		 <p>{name}</p>
+		</ul>
+		</div>
 		);
 }
 
 export default Task;
+

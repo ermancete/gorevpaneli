@@ -8,8 +8,9 @@ import shutdownicon from './shutdownicon.png';
 import settings from './settings.png';
 import tasks from './tasks.png';
 import refresh from './refresh.png';
-import Tasks from './Tasks';
+import isimListesi from './isimListesi';
 import ModalInternal from './ModalInternal';
+// import Task from './Task';
 
 
 class Navigation extends Component {
@@ -18,22 +19,23 @@ class Navigation extends Component {
 		this.state = {
 			Tasks: [],
 			searchfield: '',
-			open: false
+			// open: false
 		}
 	}
 
-	onSearchChange = (event) => {
-		this.setState({ searchfield: event.target.value })
+	onSearchChange = (a) => {
+		this.setState({ searchfield: a.target.value })
 	}
-	componentDidMount() {
-		this.setState({ Tasks: Tasks })
-	}
-
+	
+	/*componentDidMount() {
+		this.setState({ Tasks: 'dummy' })
+	}*/
+ 
 	render() {
 		const { Tasks, searchfield } = this.state;
 		
-		const filteredTasks = Tasks.filter(task => {
-			return task.name.toLowerCase().includes(searchfield.toLowerCase());
+		const filteredTasks = Tasks.filter(giri => {
+			return giri.name.toLowerCase().includes(searchfield.toLowerCase());
 		})
 
 		return (
@@ -54,10 +56,11 @@ class Navigation extends Component {
 						<div className="finishedtasks"><p>Biten Görevler</p></div>
 					</div>
 					<div className="thirdrow">
-						<ModalInternal />
+						<ModalInternal  />
 						<SearchBox searchChange={this.onSearchChange} />
 						<Tasklist Tasks={filteredTasks} />
-					</div>
+						
+						</div>
 
 				</div>
 			</div>
