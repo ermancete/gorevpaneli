@@ -255,6 +255,9 @@ h1 {
 	color: #4C5053;
 }
 
+.activeTask {
+	text-decoration: line-through;
+}
 
 .Kapat {
 	width: 50px;
