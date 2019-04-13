@@ -6,7 +6,6 @@ class ModalInternal extends Component {
         super(props);
         this.state = {
           open: false,
-          istenenDeger: '' 
         };
       }
 
@@ -17,17 +16,15 @@ class ModalInternal extends Component {
 	onCloseModal = () => {
 		this.setState({ open: false });
     };
-    
-   /* onTextChange = (event) => {
-    	this.setState({ istenenDeger: event.target.value })
-    }*/
 
     addNewTask = () => {
-        this.setState({ istenenDeger: 'osman' })
+   	let a = this.refs.modalinput.value;
+    	console.log(a);
+        Tasks.push(a);
     }
 
     render() {
-    	const { istenenDeger } = this.state;
+    	const { Tasks } =this.props;
         let open = this.state.open;
         return (
 
@@ -36,7 +33,7 @@ class ModalInternal extends Component {
                 <Modal open={open} onClose={this.onCloseModal} center>
                     <div>
                         <h2>Yeni görev ekle</h2>
-                        <textarea value=""> </textarea>
+                        <textarea ref="modalinput" id="modalinput"> </textarea>
                         <button onClick={this.addNewTask}>EKLE</button>
                     </div>
                 </Modal>

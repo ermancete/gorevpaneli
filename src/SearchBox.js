@@ -2,12 +2,14 @@ import React from 'react';
 
 const SearchBox = ({ searchChange }) => {
 	return (
+
 		<div>
-			<input 
+			<input className="arama"
 			type='search' 
-			placeholder='Arama' 
+			placeholder='Arama...' 
 			onChange={searchChange}
 			/>
+			
 		</div>
 		);
 }

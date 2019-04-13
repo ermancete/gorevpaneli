@@ -2,22 +2,27 @@
 	display: flex;
 }
 
-.container div {
-	padding: 0px;
-}
-
 .firstlayout {
 	background-color: #353A3E;
-	flex: 1;
+	width: 150px;
 	height: 100vh;
 	text-align: center;
+	display: flex;
+	flex-direction: column; 
+	/* flex'te flex-direction ve justify-content en çok kullanılan özellikler */ 
+	align-items: center;
+	justify-content: space-between;
 }
 
+.top-left-items {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
 .Avatar {
 	width: 70px;
 	height: 70px;	
-	padding-top: 50px;
-	padding-left: 40px; 
+
 }
 
 
@@ -27,38 +32,50 @@ h3 {
 
 .secondlayout {
 	background-color: white;
-	flex: 9;
 	flex-direction: column;
-
+	width: 100%;
 }
 
 h1 {
 	color: green;
 }
 
-.secondlayout div {
-	border: 1px #ccc solid;
-	padding: 10px;
-	
-}
-
 .missionIdlePanel {
+	display: flex;
+	border-bottom: 1px solid lightgrey;
 	background-color: #F1F1F1;
-
+}
+.refresh-icon-wrapper {
+	background-color: #fe4f3e;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	margin: 30px 20px 30px 30px;
+	position: relative;
+}
+.refresh-icon {
+	color: white;
+	position: absolute;
+	top: 7px;
+	left: 6px;
 }
 
-.missionIdlePanel p {
-	margin-left: 30px;
+.circle{
 	font-size: x-small;
+	width: 170px;
+	height: 30px;
+	border-radius: 15px;
+	text-align: center;
+	align-items: center;
+	margin-top: 30px;
+	border: 1px solid grey;
 }
 
-.missionIdlePanel img {
-	margin-top: 
-}
 
 .missionTabRow {
 	background-color: #F1F1F1;
 	display: flex;
+	
 	
 }
 
@@ -66,24 +83,162 @@ h1 {
 	color: red;
 }
 
+.activetasks {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-right: 1px solid grey;
+}
+
+.active-tasks-icon {
+	margin-left: 70px;
+	margin-right: 10px;
+	font-size: 2em;
+	color: lightgrey;
+}
+
+.activetasks p {
+	margin-right: 70px;
+}
+
+.search-container {
+	display: flex;
+	flex-direction: column;
+	height: 478px;
+	justify-content: space-between;
+	margin-right: 30px;
+	margin-left: 10px;
+	margin-top: 10px;
+	border: 1px solid grey;
+	border-radius: 5px;
+
+}
+
+.search-container ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+
+}
+
+.search-container li {
+	display: flex;
+	justify-content: space-between;
+	border-bottom: 1px solid grey;
+	padding: 15px;
+	align-items: center;
+}
+
+.trash-icon {
+	padding: 10px;
+	margin-right: 10px;
+	color: gray;
+	border: 1px solid grey;
+	border-radius: 50%;
+	font-size: 10px;
+}
+
+.trash-icon:hover {
+	background-color: red;
+	color: white;
+}
+
+.down-arrow-icon {
+	color: gray;
+	padding: 10px;
+	border: 1px solid grey;
+	border-radius: 50%;
+	font-size: 10px;
+}
+
+.down-arrow-icon:hover {
+	background-color: red;
+	color: white; }
+
+.search-container-top {
+	border-bottom: 1px solid grey;
+	display: flex;
+	justify-content: space-between;
+	height: 50px;
+	align-items: center;
+}
+
+.arama {
+	border:none;
+	height: 45px;
+	width: 600px;
+	padding-left: 5px;
+}
+
+.arama:focus {
+	outline: 0;
+}
+
+.new-task-button {
+	background-color: #fe4f3e;
+	font-size: smaller;
+	color: white;
+	width: 150px;
+	height: 30px;
+	border-radius: 15px;
+	margin-right: 10px;
+}
+
+
+.new-task-button:focus {
+	outline:0;
+}
+
 .thirdrow {
 	background-color: white;
-	height: 67vh;
-	width: 165vh;
+	height: 67vh; }
 
+.hepsini-sec {
+	color: red;
+	font-size: smaller;
+	margin-left: 10px;
+	margin-bottom: 10px;
+}
 
+.element {
+	margin-right: 7px;
+	vertical-align: center;
+	transform: translateY(-2px);
 }
 
 .Avatar img {
 	margin: 27px 0px 0px 0px;
 }
 
+.active-task-number {
+	height: 24px;
+	width: 24px;
+	background-color: lightgray;
+	border-radius: 50%;
+	position: absolute;
+	top: 155px;
+	left: 70px;
+}
+
+.active-task-number-two {
+	height: 22px;
+	width: 22px;
+	background-color: red;
+	border-radius: 50%;
+	position: absolute;
+	top: 97px;
+	left: 630px;
+}
+
 .Görevler img {
 	margin: 80px 0px 0px 0px;
+	padding: 20px 50px;
+	border-left: 4px solid red;
 }
 
 .Görevler h3 {
 	font-size: smaller;
+	transform: translateY(-30px);
 }
 
 .Ayarlar {
@@ -91,12 +246,11 @@ h1 {
 }
 
 .Ayarlar img {
-	margin: 50px 0px 0px 45px;
+	margin-top: 50px;
 
 }
 
 .Ayarlar h3 {
-	margin: 0px 0px 0px 45px;
 	font-size: smaller;
 	color: #4C5053;
 }
@@ -107,23 +261,54 @@ h1 {
 }
 
 .Kapat img {
-	margin: 250px 0px 0px 45px;
 }
 
 .Kapat h3 {
-	margin: 0px 0px 0px 53px;
 	font-size: x-small;
+	margin-top: -7px;
 }
 
-.missionIdlePanel div {
-	margin: 10px 0px 0px 0px;
+.alltasks {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-right: 1px solid grey;
 }
 
-.circle {
+.all-tasks-icon {
+	margin-left: 70px;
+	margin-right: 10px;
+	font-size: 2em;
+	color: lightgrey;
+}
+
+.alltasks p {
+	margin-right: 70px;
+}
+
+.finishedtasks {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	border-right: 1px solid grey;
+	
+}
+
+.finishedtasks p {
+	margin-right: 70px;
+}
+
+.finished-tasks-icon {
+	margin-left: 70px;
+	margin-right: 10px;
+	font-size: 2em;
+	color: lightgrey;
 	width: 170px;
 	height: 30px;
-	margin: 10% auto;
-	border-radius: 20%;
-	position: relative;
-	margin: px 0px 0px 0px;
+	border-radius: 30px;
+	text-align: center;
+	align-items: center;
+	margin-top: 0px;
+	border: 2px solid grey;
+
 }
