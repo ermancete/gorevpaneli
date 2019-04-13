@@ -25,6 +25,7 @@ class TasksView extends Component {
 	onSearchChange = (event) => {
 		this.setState({ searchfield: event.target.value })
 	}
+
 	componentDidMount() {
 		this.setState({ Tasks: Tasks })
 	}
@@ -32,7 +33,8 @@ class TasksView extends Component {
 	render() {
 		const { Tasks, searchfield } = this.state;
 		
-		const filteredTasks = Tasks.filter(task => {
+		const filteredTaskz = Tasks.filter(task => {
+			console.log(task);
 			return task.name.toLowerCase().includes(searchfield.toLowerCase());
 		})
 
@@ -40,7 +42,7 @@ class TasksView extends Component {
 			<div>
 				<ModalInternal modalHandler={this.modalHandler}/>
 				<SearchBox searchChange={this.onSearchChange} />
-				<Tasklist Tasks={filteredTasks} />
+				<Tasklist filteredTasks={filteredTaskz} />
 			</div>
 
 		);
