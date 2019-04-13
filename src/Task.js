@@ -19,7 +19,7 @@ class Task extends Component {
 		  <div>
 			<span className={`${isActive ? "activeTask" : "inactiveTask"}`}>{name}</span>
 			<input type="checkbox" 
-			checked={isActive}
+			defaultChecked={isActive}
 			onChange={this.handleChange}/>
 			{isActive && <i> - IS an active task</i> }
 		  </div>

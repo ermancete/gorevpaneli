@@ -10,15 +10,16 @@ class Tasklist extends Component {
 	}
 
 	onToggleTaskCheckbox = taskid => {
-		const { tasks } = this.state;
-		const nextTaskState = tasks.map(task => {
+		const { filteredTasks } = this.props;
+		console.log("aktivazzion");
+		const nextTaskState = filteredTasks.map(task => {
 			if (task.id !== taskid) return task;
 			return {
 				...task,
 				isActive: !task.isActive
 			};
 		});
-		this.setState(prevState => ({ tasks: nextTaskState }));
+		this.setState(prevState => ({ filteredTasks: nextTaskState }));
 	};
 
 	render() {
