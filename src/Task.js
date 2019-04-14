@@ -2,29 +2,35 @@ import React, { Component } from "react";
 
 class Task extends Component {
 
-	  constructor(props) {
+	constructor(props) {
 		super(props);
 		this.state = {
 		};
-	  }  
+	}
 
 	handleChange = event => {
 		const { taskId, onToggleTask } = this.props;
 		onToggleTask(taskId);
-	  };
-	
-	  render() {
-		const { name, isActive } = this.props;
+		this.setState(this.state);
+		
+	};
+
+	render() {
+		const { name, isDone } = this.props;
 		return (
-		  <div>
-			<span className={`${isActive ? "activeTask" : "inactiveTask"}`}>{name}</span>
-			<input type="checkbox" 
-			defaultChecked={isActive}
-			onChange={this.handleChange}/>
-			{isActive && <i> - IS an active task</i> }
-		  </div>
+			<div>
+				<span className={`${isDone ? "activeTask" : "inactiveTask"}`}>
+					{name}
+
+				<input type="checkbox"
+					checked={isDone}
+					onChange={this.handleChange.bind(this)} />
+				</span>
+				
+				{isDone && <i> - Task done!</i>}
+			</div>
 		);
-	  }
+	}
 
 }
 
