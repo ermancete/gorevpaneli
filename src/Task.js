@@ -1,15 +1,5 @@
 import React, { Component } from "react";
 
-<<<<<<< HEAD
-const Task = ({ name }) => {
-	return (
-		<div>
-		<ul>
-		 <input type="checkbox" />
-		 <p>{name}</p>
-		</ul>
-		</div>
-=======
 class Task extends Component {
 
 	  constructor(props) {
@@ -33,7 +23,6 @@ class Task extends Component {
 			onChange={this.handleChange}/>
 			{isActive && <i> - IS an active task</i> }
 		  </div>
->>>>>>> 3d6bc25b367c96711f18277c2123a9a26a050223
 		);
 	  }
 

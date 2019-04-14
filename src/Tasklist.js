@@ -6,20 +6,22 @@ class Tasklist extends Component {
 
 	constructor(props) {
 		super(props)
-		this.state = {}
+		this.state = {
+			activeTasks : []
+		}
 	}
 
-	onToggleTaskCheckbox = taskid => {
+	onToggleTaskCheckbox = taskId => {
 		const { filteredTasks } = this.props;
-		console.log("aktivazzion");
 		const nextTaskState = filteredTasks.map(task => {
-			if (task.id !== taskid) return task;
+			if (task.id !== taskId) return task;
+			console.log("aktivazzion " + task.id);
 			return {
 				...task,
 				isActive: !task.isActive
 			};
 		});
-		this.setState(prevState => ({ filteredTasks: nextTaskState }));
+		//this.setState(prevState => ({ filteredTasks: nextTaskState }));
 	};
 
 	render() {
@@ -28,6 +30,7 @@ class Tasklist extends Component {
 			filteredTasks.map(task => (
 				<Task
 					key={task.id}
+					taskId={task.id}
 					name={task.name}
 					isActive={task.isActive}
 					onToggleTask={this.onToggleTaskCheckbox}
