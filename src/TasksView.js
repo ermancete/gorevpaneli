@@ -12,7 +12,6 @@ class TasksView extends Component {
 		super()
 		this.state = {
 			allTasks: [],
-			searchfield: '',
 			open: false,
 			tasksToExpose: [],
 			focusedTasks: []
@@ -97,6 +96,48 @@ class TasksView extends Component {
 		this.setState({ allTasks: refreshedTasks })
 	}
 
+	onReverseTaskListOrder = (event) => {
+		const { allTasks } = this.state;
+		console.log("onReverseTaskListOrder called");
+		const refreshedTasks = allTasks.reverse().map(task => {
+			return task;
+		})
+		console.log(refreshedTasks);
+		this.setState({
+			tasksToExpose: refreshedTasks,
+			focusedTasks: refreshedTasks
+		})
+	}
+
+	onAddNewTask = (taskName) => {
+		const { allTasks } = this.state;
+		console.log("onAddNewTask called");
+		var currentTasks = allTasks.map(task => {
+			return task;
+		})
+		let lastId = allTasks[allTasks.length - 1].id;
+		currentTasks.push({ id: lastId + 1, name: taskName, isDone: false })
+		console.log(currentTasks);
+		this.setState({
+			allTasks: currentTasks,
+			tasksToExpose: currentTasks
+		})
+	}
+
+	onEraseTask = (taskId) => {
+		const { allTasks } = this.state;
+		console.log("onEraseTask called with task ID: " + taskId);
+		var currentTasks = allTasks.filter(task => {
+			if(task.id === taskId) return;
+			return task;
+		})
+		console.log(currentTasks);
+		this.setState({
+			allTasks: currentTasks,
+			tasksToExpose: currentTasks
+		})
+	}
+
 	render() {
 		const { tasksToExpose } = this.state;
 
@@ -110,9 +151,12 @@ class TasksView extends Component {
 					<div className="finishedtasks" onClick={this.onFilterDones}><p>Biten Görevler</p></div>
 				</div>
 				<div className="thirdrow">
-					<ModalInternal modalHandler={this.modalHandler} />
+					<ModalInternal modalHandler={this.modalHandler} onAddNewTask={this.onAddNewTask} />
+					<button id="reverser" onClick={this.onReverseTaskListOrder}> Sırala </button>
 					<SearchBox searchChange={this.onSearchChange} />
-					<TaskContainer exposedTasks={tasksToExpose} onToggle={this.onTaskActiveStatusChange} />
+					<TaskContainer exposedTasks={tasksToExpose}
+						onToggle={this.onTaskActiveStatusChange}
+						onEraseTask={this.onEraseTask} />
 				</div>
 			</div>
 		);

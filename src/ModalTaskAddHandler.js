@@ -8,14 +8,15 @@ class ModalTaskAddHandler extends Component {
     this.handleChange = this.handleChange.bind(this);
     }
 
-    addNewTask = () => {
+    addNewTask(event) {
         console.log("adding new task");
-        //this.state.taskText
+        const { onAddNewTask } = this.props;
+        const { taskText } = this.state;
+        onAddNewTask(taskText);
     }
 
     handleChange(event) {
-        console.log("handling ze change");
-        this.setState({taskText: event.target.taskText});
+        this.setState({taskText: event.target.value});
       }
 
     render() {
@@ -23,7 +24,7 @@ class ModalTaskAddHandler extends Component {
             <div>
                 <h2>Yeni görev ekle</h2>
                 <textarea value={this.state.taskText} onChange={this.handleChange}/>
-                <button onClick={this.addNewTask}>EKLE</button>
+                <button onClick={this.addNewTask.bind(this)}>EKLE</button>
             </div>
         )
     };

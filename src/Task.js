@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TaskSpan from "./TaskSpan"
 
 class Task extends Component {
 
@@ -8,26 +9,17 @@ class Task extends Component {
 		};
 	}
 
-	handleChange = event => {
-		const { taskId, onToggleTask } = this.props;
-		onToggleTask(taskId);
-		this.setState(this.state);
-		
-	};
-
 	render() {
-		const { name, isDone } = this.props;
+		const { name, isDone, taskId, onToggle, onEraseTask } = this.props;
 		return (
 			<div>
-				<span className={`${isDone ? "activeTask" : "inactiveTask"}`}>
-					{name}
-
-				<input type="checkbox"
-					checked={isDone}
-					onChange={this.handleChange.bind(this)} />
-				</span>
-				
-				{isDone && <i> - Task done!</i>}
+				<TaskSpan
+					isDone={isDone}
+					taskId={taskId}
+					onToggle={onToggle}
+					name={name}
+					onEraseTask={onEraseTask}
+				/>
 			</div>
 		);
 	}

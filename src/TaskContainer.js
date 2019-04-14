@@ -10,18 +10,20 @@ class TaskContainer extends Component {
 	}
 
 	render() {
-		const { exposedTasks, onToggle } = this.props;
+		const { exposedTasks, onToggle, onEraseTask } = this.props;
 		return (
+
 			exposedTasks.map(task => (
 				<Task
 					key={task.id}
 					taskId={task.id}
 					name={task.name}
 					isDone={task.isDone}
-					onToggleTask={onToggle}
+					onToggle={onToggle}
+					onEraseTask={onEraseTask}
 				/>
-			)
-			)
+			))
+
 
 		);
 	}

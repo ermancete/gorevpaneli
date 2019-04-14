@@ -18,7 +18,6 @@ class ModalInternal extends Component {
         this.setState({ open: false });
     };
 
-
     render() {
     	const { Tasks } =this.props;
         let open = this.state.open;
@@ -28,7 +27,7 @@ class ModalInternal extends Component {
                 <button onClick={this.onOpenModal}>Yeni görev ekle</button>
                 <Modal open={open} onClose={this.onCloseModal} center>
                     <div>
-                        <ModalTaskAddHandler modalHandler = {this.props.handler}/>
+                        <ModalTaskAddHandler modalHandler = {this.props.handler} onAddNewTask={this.props.onAddNewTask} />
                     </div>
                 </Modal>
             </div>
