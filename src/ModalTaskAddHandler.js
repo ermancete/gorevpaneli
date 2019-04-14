@@ -4,8 +4,8 @@ class ModalTaskAddHandler extends Component {
     constructor(props) {
         super(props);
         this.state = {taskText: ''};
-
-    this.handleChange = this.handleChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.addNewTask = this.addNewTask.bind(this);
     }
 
     addNewTask(event) {
@@ -24,7 +24,7 @@ class ModalTaskAddHandler extends Component {
             <div>
                 <h2>Yeni görev ekle</h2>
                 <textarea value={this.state.taskText} onChange={this.handleChange}/>
-                <button onClick={this.addNewTask.bind(this)}>EKLE</button>
+                <button onClick={this.addNewTask}>EKLE</button>
             </div>
         )
     };

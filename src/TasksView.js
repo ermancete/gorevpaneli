@@ -16,6 +16,7 @@ class TasksView extends Component {
 			tasksToExpose: [],
 			focusedTasks: []
 		}
+		this.modalRef = React.createRef()
 		this.modalHandler = this.modalHandler.bind(this)
 	}
 
@@ -122,6 +123,7 @@ class TasksView extends Component {
 			allTasks: currentTasks,
 			tasksToExpose: currentTasks
 		})
+		this.modalRef.current.onCloseModal();
 	}
 
 	onEraseTask = (taskId) => {
@@ -151,7 +153,9 @@ class TasksView extends Component {
 					<div className="finishedtasks" onClick={this.onFilterDones}><p>Biten Görevler</p></div>
 				</div>
 				<div className="thirdrow">
-					<ModalInternal modalHandler={this.modalHandler} onAddNewTask={this.onAddNewTask} />
+					<ModalInternal modalHandler={this.modalHandler} 
+					onAddNewTask={this.onAddNewTask}
+					ref={this.modalRef} />
 					<button id="reverser" onClick={this.onReverseTaskListOrder}> Sırala </button>
 					<SearchBox searchChange={this.onSearchChange} />
 					<TaskContainer exposedTasks={tasksToExpose}

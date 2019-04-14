@@ -27,7 +27,9 @@ class ModalInternal extends Component {
                 <button onClick={this.onOpenModal}>Yeni görev ekle</button>
                 <Modal open={open} onClose={this.onCloseModal} center>
                     <div>
-                        <ModalTaskAddHandler modalHandler = {this.props.handler} onAddNewTask={this.props.onAddNewTask} />
+                        <ModalTaskAddHandler modalHandler={this.props.handler}
+                         onAddNewTask={this.props.onAddNewTask}
+                         addNewTaskCallback={this.onCloseModal} />
                     </div>
                 </Modal>
             </div>
