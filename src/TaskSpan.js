@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { faTrash } from '@fortawesome/free-solid-svg-icons';
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { library } from '@fortawesome/fontawesome-svg-core';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 library.add(faTrash)
 
@@ -10,17 +10,20 @@ class TaskSpan extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            isChecked: false
         }
     }
 
     handleChange = event => {
         const { taskId, onToggle } = this.props;
-        onToggle(taskId);
+        const { isChecked } = this.state;
+        this.setState({ isChecked : !this.state.isChecked})
+        onToggle(taskId, !isChecked);
     };
 
     onErase = event => {
         const { taskId, onEraseTask } = this.props;
-        onEraseTask(taskId);
+        onEraseTask(taskId, this.state.isChecked);
     };
 
     onMove = event => {
@@ -31,7 +34,6 @@ class TaskSpan extends Component {
     render() {
         const { isDone, name } = this.props;
         return (
-            
                 <div className="task-list-wrapper">
                 <div>
                 <input 
@@ -43,15 +45,12 @@ class TaskSpan extends Component {
                     {name}
                 </span>
 
-                {isDone && <i> - Task done!</i>}
                 </div>
                 <div className="list-element-right-icons">
 					<FontAwesomeIcon onClick={this.onErase} icon="trash" className="trash-icon"/>
-					<FontAwesomeIcon onClick={this.onReverseTaskListOrder} icon={['fas', 'chevron-down']} className="down-arrow-icon" />
+					<FontAwesomeIcon onClick={this.onMove} icon={['fas', 'chevron-down']} className="down-arrow-icon" />
                 </div>
                 
-                <button id="taskEraser" onClick={this.onErase}> Görevi sil </button>
-                <button id="taskMover" onClick={this.onMove}> Görevi taşı </button>
             </div>
         );
     }

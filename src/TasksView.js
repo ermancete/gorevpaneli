@@ -25,7 +25,8 @@ class TasksView extends Component {
 			allTasks: [],
 			open: false,
 			tasksToExpose: [],
-			focusedTasks: []
+			focusedTasks: [],
+			totalActive: 0
 		}
 		this.modalRef = React.createRef()
 		this.modalHandler = this.modalHandler.bind(this)
@@ -92,20 +93,34 @@ class TasksView extends Component {
 		})
 	}
 
-	onTaskActiveStatusChange = (taskId) => {
+	onTaskActiveStatusChange = (taskId, isTaskDone) => {
 		console.log("onTaskActiveStatusChange called for " + taskId);
-		const { allTasks } = this.state;
+		console.log("isTaskDone " + isTaskDone);
+		const { allTasks, totalActive } = this.state;
 		const refreshedTasks = allTasks.map(task => {
 			if (task.id !== taskId) return task;
-			console.log("aktivazzion " + task.id);
 			return {
 				...task,
 				isDone: !task.isDone
 			};
 		})
+		if(isTaskDone) {
+			this.setState(prevState =>{
+				return {
+					allTasks: refreshedTasks,
+					totalActive : prevState.totalActive - 1 
+				}
+			});
+		} else {
+			this.setState(prevState =>{
+				return {
+					allTasks: refreshedTasks,
+					totalActive : prevState.totalActive + 1 
+				}
+			});
+		}
 		console.log("Refreshed TASKS")
 		console.log(refreshedTasks)
-		this.setState({ allTasks: refreshedTasks })
 	}
 
 	onReverseTaskListOrder = (event) => {
@@ -122,40 +137,60 @@ class TasksView extends Component {
 	}
 
 	onAddNewTask = (taskName) => {
-		const { allTasks } = this.state;
+		const { allTasks, totalActive } = this.state;
 		console.log("onAddNewTask called");
 		var currentTasks = allTasks.map(task => {
 			return task;
 		})
-		let lastId = allTasks[allTasks.length - 1].id;
+		let lastId = allTasks.length > 0 ? allTasks[allTasks.length - 1].id : 0;
 		currentTasks.push({ id: lastId + 1, name: taskName, isDone: false })
 		console.log(currentTasks);
-		this.setState({
-			allTasks: currentTasks,
-			tasksToExpose: currentTasks
+		this.setState(prevState =>{
+			return {
+				allTasks: currentTasks,
+				tasksToExpose: currentTasks,
+				totalActive : prevState.totalActive + 1
+			}
 		})
 		this.modalRef.current.onCloseModal();
 	}
 
-	onEraseTask = (taskId) => {
-		const { allTasks } = this.state;
+	onEraseTask = (taskId, isTaskDone) => {
+		const { allTasks, tasksToExpose, totalActive } = this.state;
 		console.log("onEraseTask called with task ID: " + taskId);
+		console.log("isTaskDone " + isTaskDone);
 		var currentTasks = allTasks.filter(task => {
-			if(task.id === taskId) return;
+			if (task.id === taskId) return;
+			return task;
+		})
+		var expose = tasksToExpose.filter(task => {
+			if (task.id === taskId) return;
 			return task;
 		})
 		console.log(currentTasks);
-		this.setState({
-			allTasks: currentTasks,
-			tasksToExpose: currentTasks
-		})
+		if(isTaskDone) {
+			this.setState(prevState =>{
+				return {
+					allTasks: currentTasks,
+					tasksToExpose: expose
+				}
+			})
+		} else {
+			this.setState(prevState =>{
+				return {
+					allTasks: currentTasks,
+					tasksToExpose: expose,
+					totalActive : prevState.totalActive - 1
+				}
+			})
+		}
 	}
 
 	onTaskMove = (taskId) => {
 		const { allTasks } = this.state;
 		console.log("onEraseTask called with task ID: " + taskId);
 		var currentTasks = allTasks.filter(task => {
-			if(task.id === taskId) return;
+			if (task.id === taskId) return;
 			return task;
 		})
 		console.log(currentTasks);
@@ -171,34 +206,34 @@ class TasksView extends Component {
 		return (
 			<div>
 				<div className="missionIdlePanel">
-					<div className="refresh-icon-wrapper"><FontAwesomeIcon icon="redo" className="refresh-icon"/></div>
-						<div className="circle"><p>Görev Yönetim Paneli</p></div>
-						</div>
+					<div className="refresh-icon-wrapper"><FontAwesomeIcon icon="redo" className="refresh-icon" /></div>
+					<div className="circle"><p>Görev Yönetim Paneli</p></div>
+				</div>
 				<div className="missionTabRow">
-					<div className="alltasks" onClick={this.onListAll}><FontAwesomeIcon icon={['fas', 'arrow-alt-circle-right']} className="all-tasks-icon"/><p>Tüm Görevler</p></div>
-					<div className="activetasks" onClick={this.onFilterActives}><FontAwesomeIcon icon="clock" className="active-tasks-icon"/><span className="active-task-number-two"></span><p>Aktif Görevler</p></div>
-					<div className="finishedtasks" onClick={this.onFilterDones}><FontAwesomeIcon icon={['fas', 'check']} className="finished-tasks-icon"/><p>Biten Görevler</p></div>
-					</div>
-					
-				
+					<div className="alltasks" onClick={this.onListAll}><FontAwesomeIcon icon={['fas', 'arrow-alt-circle-right']} className="all-tasks-icon" /><p>Tüm Görevler</p></div>
+					<div className="activetasks" onClick={this.onFilterActives}><FontAwesomeIcon icon="clock" className="active-tasks-icon" /><span className="active-task-number-two">{this.state.totalActive}</span><p>Aktif Görevler</p></div>
+					<div className="finishedtasks" onClick={this.onFilterDones}><FontAwesomeIcon icon={['fas', 'check']} className="finished-tasks-icon" /><p>Biten Görevler</p></div>
+				</div>
+
+
 				<div className="thirdrow">
 					<div className="search-container">
-					<div className="search-container-top">
-					<SearchBox searchChange={this.onSearchChange} />
-					<ModalInternal modalHandler={this.modalHandler} 
-					onAddNewTask={this.onAddNewTask}
-					ref={this.modalRef} />
-					</div>
-					
-					<TaskContainer exposedTasks={tasksToExpose}
-						onToggle={this.onTaskActiveStatusChange}
-						onEraseTask={this.onEraseTask} />
+						<div className="search-container-top">
+							<SearchBox searchChange={this.onSearchChange} />
+							<ModalInternal modalHandler={this.modalHandler}
+								onAddNewTask={this.onAddNewTask}
+								ref={this.modalRef} />
+						</div>
+
+						<TaskContainer exposedTasks={tasksToExpose}
+							onToggle={this.onTaskActiveStatusChange}
+							onEraseTask={this.onEraseTask}
+							onEraseTask={this.onEraseTask}
+							onTaskMove={this.onTaskMove} />
 						<span className="hepsini-sec">Hepsini seç ></span>
-						onEraseTask={this.onEraseTask}
-						onTaskMove={this.onTaskMove} />
+					</div>
 				</div>
-				</div>
-				
+
 			</div>
 
 		);
