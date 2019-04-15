@@ -151,6 +151,20 @@ class TasksView extends Component {
 		})
 	}
 
+	onTaskMove = (taskId) => {
+		const { allTasks } = this.state;
+		console.log("onEraseTask called with task ID: " + taskId);
+		var currentTasks = allTasks.filter(task => {
+			if(task.id === taskId) return;
+			return task;
+		})
+		console.log(currentTasks);
+		this.setState({
+			allTasks: currentTasks,
+			tasksToExpose: currentTasks
+		})
+	}
+
 	render() {
 		const { tasksToExpose } = this.state;
 
@@ -180,6 +194,8 @@ class TasksView extends Component {
 						onToggle={this.onTaskActiveStatusChange}
 						onEraseTask={this.onEraseTask} />
 						<span className="hepsini-sec">Hepsini seç ></span>
+						onEraseTask={this.onEraseTask}
+						onTaskMove={this.onTaskMove} />
 				</div>
 				</div>
 				

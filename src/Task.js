@@ -10,7 +10,7 @@ class Task extends Component {
 	}
 
 	render() {
-		const { name, isDone, taskId, onToggle, onEraseTask } = this.props;
+		const { name, isDone, taskId, onToggle, onEraseTask, onTaskMove } = this.props;
 		return (
 			<div>
 				<TaskSpan
@@ -19,6 +19,7 @@ class Task extends Component {
 					onToggle={onToggle}
 					name={name}
 					onEraseTask={onEraseTask}
+					onTaskMove={onTaskMove}
 				/>
 			</div>
 		);

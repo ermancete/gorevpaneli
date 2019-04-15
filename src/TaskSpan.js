@@ -23,6 +23,11 @@ class TaskSpan extends Component {
         onEraseTask(taskId);
     };
 
+    onMove = event => {
+        const { taskId, onTaskMove } = this.props;
+        onTaskMove(taskId);
+    };
+
     render() {
         const { isDone, name } = this.props;
         return (
@@ -45,6 +50,8 @@ class TaskSpan extends Component {
 					<FontAwesomeIcon onClick={this.onReverseTaskListOrder} icon={['fas', 'chevron-down']} className="down-arrow-icon" />
                 </div>
                 
+                <button id="taskEraser" onClick={this.onErase}> Görevi sil </button>
+                <button id="taskMover" onClick={this.onMove}> Görevi taşı </button>
             </div>
         );
     }

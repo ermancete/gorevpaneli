@@ -10,7 +10,7 @@ class TaskContainer extends Component {
 	}
 
 	render() {
-		const { exposedTasks, onToggle, onEraseTask } = this.props;
+		const { exposedTasks, onToggle, onEraseTask, onTaskMove } = this.props;
 		return (
 
 			exposedTasks.map(task => (
@@ -21,6 +21,7 @@ class TaskContainer extends Component {
 					isDone={task.isDone}
 					onToggle={onToggle}
 					onEraseTask={onEraseTask}
+					onTaskMove={onTaskMove}
 				/>
 			))
 
