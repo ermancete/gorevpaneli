@@ -4,8 +4,19 @@ import TaskContainer from './TaskContainer';
 import SearchBox from './SearchBox';
 import Tasks from './Tasks';
 import ModalInternal from './ModalInternal';
-import refresh from './refresh.png';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faRedo } from '@fortawesome/free-solid-svg-icons'
+import { faArrowAltCircleRight } from '@fortawesome/free-solid-svg-icons'
+import { faClock } from '@fortawesome/free-solid-svg-icons'
+import { faCheck } from '@fortawesome/free-solid-svg-icons'
+import { faChevronDown } from '@fortawesome/free-solid-svg-icons'
 
+library.add(faRedo)
+library.add(faArrowAltCircleRight)
+library.add(faClock)
+library.add(faCheck)
+library.add(faChevronDown)
 
 class TasksView extends Component {
 	constructor() {
@@ -145,24 +156,35 @@ class TasksView extends Component {
 
 		return (
 			<div>
-				<div className="missionIdlePanel"><img src={refresh} /></div>
-				<div className="circle"><p>Görev yönetim paneli</p></div>
+				<div className="missionIdlePanel">
+					<div className="refresh-icon-wrapper"><FontAwesomeIcon icon="redo" className="refresh-icon"/></div>
+						<div className="circle"><p>Görev Yönetim Paneli</p></div>
+						</div>
 				<div className="missionTabRow">
-					<div className="alltasks" onClick={this.onListAll}><p>Tüm Görevler</p></div>
-					<div className="activetasks" onClick={this.onFilterActives}><p>Aktif Görevler</p></div>
-					<div className="finishedtasks" onClick={this.onFilterDones}><p>Biten Görevler</p></div>
-				</div>
+					<div className="alltasks" onClick={this.onListAll}><FontAwesomeIcon icon={['fas', 'arrow-alt-circle-right']} className="all-tasks-icon"/><p>Tüm Görevler</p></div>
+					<div className="activetasks" onClick={this.onFilterActives}><FontAwesomeIcon icon="clock" className="active-tasks-icon"/><span className="active-task-number-two"></span><p>Aktif Görevler</p></div>
+					<div className="finishedtasks" onClick={this.onFilterDones}><FontAwesomeIcon icon={['fas', 'check']} className="finished-tasks-icon"/><p>Biten Görevler</p></div>
+					</div>
+					
+				
 				<div className="thirdrow">
+					<div className="search-container">
+					<div className="search-container-top">
+					<SearchBox searchChange={this.onSearchChange} />
 					<ModalInternal modalHandler={this.modalHandler} 
 					onAddNewTask={this.onAddNewTask}
 					ref={this.modalRef} />
-					<button id="reverser" onClick={this.onReverseTaskListOrder}> Sırala </button>
-					<SearchBox searchChange={this.onSearchChange} />
+					</div>
+					
 					<TaskContainer exposedTasks={tasksToExpose}
 						onToggle={this.onTaskActiveStatusChange}
 						onEraseTask={this.onEraseTask} />
+						<span className="hepsini-sec">Hepsini seç ></span>
 				</div>
+				</div>
+				
 			</div>
+
 		);
 	}
 }

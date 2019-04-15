@@ -9,7 +9,6 @@
 	text-align: center;
 	display: flex;
 	flex-direction: column; 
-	/* flex'te flex-direction ve justify-content en çok kullanılan özellikler */ 
 	align-items: center;
 	justify-content: space-between;
 }
@@ -33,10 +32,6 @@ h3 {
 	background-color: white;
 	flex-direction: column;
 	width: 100%;
-}
-
-h1 {
-	color: green;
 }
 
 .missionIdlePanel {
@@ -78,10 +73,6 @@ h1 {
 	
 }
 
-.missionTabRow h1 {
-	color: red;
-}
-
 .activetasks {
 	display: flex;
 	justify-content: center;
@@ -109,24 +100,27 @@ h1 {
 	margin-right: 30px;
 	margin-left: 10px;
 	margin-top: 10px;
-	border: 1px solid grey;
+	border: 1px solid lightgrey;
 	border-radius: 5px;
 
 }
 
-.search-container ul {
-	list-style: none;
-	padding: 0;
-	margin: 0;
-
-}
-
-.search-container li {
+.task-list-wrapper {
+	
 	display: flex;
 	justify-content: space-between;
-	border-bottom: 1px solid grey;
-	padding: 15px;
-	align-items: center;
+	height: 50px;
+	border-bottom: 1px solid lightgray;
+	margin: 0;
+	padding: 0;
+}
+
+
+
+.list-element-right-icons {
+	display: flex;
+	padding: 0;
+
 }
 
 .trash-icon {
@@ -149,6 +143,7 @@ h1 {
 	border: 1px solid grey;
 	border-radius: 50%;
 	font-size: 10px;
+	margin-right: 10px;
 }
 
 .down-arrow-icon:hover {
@@ -201,7 +196,8 @@ h1 {
 }
 
 .element {
-	margin-right: 7px;
+	margin-right: 10px;
+	margin-left: 10px;
 	vertical-align: center;
 	transform: translateY(-2px);
 }
@@ -312,4 +308,21 @@ h1 {
 	margin-top: 0px;
 	border: 2px solid grey;
 
+}
+
+.task-add-window p {
+	color: red;
+	font-size: smaller;
+}
+
+.task-add-window-button {
+	background-color: #fe4f3e;
+	font-size: smaller;
+	color: white;
+	width: 150px;
+	height: 30px;
+	border-radius: 15px;
+	margin-left: 15px;
+	display: flex;
+	justify-content: center;
 }

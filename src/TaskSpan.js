@@ -1,4 +1,9 @@
 import React, { Component } from "react";
+import { faTrash } from '@fortawesome/free-solid-svg-icons';
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+library.add(faTrash)
 
 class TaskSpan extends Component {
 
@@ -21,8 +26,11 @@ class TaskSpan extends Component {
     render() {
         const { isDone, name } = this.props;
         return (
-            <div>
-                <input type="checkbox"
+            
+                <div className="task-list-wrapper">
+                <div>
+                <input 
+                	className="element" type="checkbox"
                     defaultChecked={isDone}
                     onChange={this.handleChange} />
 
@@ -31,7 +39,12 @@ class TaskSpan extends Component {
                 </span>
 
                 {isDone && <i> - Task done!</i>}
-                <button id="taskEraser" onClick={this.onErase}> Görevi sil </button>
+                </div>
+                <div className="list-element-right-icons">
+					<FontAwesomeIcon onClick={this.onErase} icon="trash" className="trash-icon"/>
+					<FontAwesomeIcon onClick={this.onReverseTaskListOrder} icon={['fas', 'chevron-down']} className="down-arrow-icon" />
+                </div>
+                
             </div>
         );
     }

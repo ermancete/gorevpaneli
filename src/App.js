@@ -13,9 +13,12 @@ class App extends Component {
         return (
             <div className="container">
                 <div className="firstlayout">
+                <div className="top-left-items">
                     <div className="Avatar"><img src={johndoe} /></div>
                     <div className="Görevler"><img src={tasks} /><h3>Görevler</h3></div>
+                    <span className="active-task-number"></span>
                     <div className="Ayarlar"><img src={settings} /><h3>Ayarlar</h3></div>
+                    </div>
                     <div className="Kapat"><img src={shutdownicon} /><h3>Kapat</h3></div>
                 </div>
                 <div className="secondlayout">

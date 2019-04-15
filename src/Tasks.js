@@ -17,7 +17,7 @@ export const Tasks = [
     },
     {
         id: 4,
-        name: 'Mission impossibru',
+        name: 'Mission impossible',
         isDone: false
     }
 ]

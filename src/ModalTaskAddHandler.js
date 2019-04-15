@@ -21,10 +21,10 @@ class ModalTaskAddHandler extends Component {
 
     render() {
         return (
-            <div>
-                <h2>Yeni görev ekle</h2>
+            <div className="task-add-window">
+                <p>Yeni görev ekle</p>
                 <textarea value={this.state.taskText} onChange={this.handleChange}/>
-                <button onClick={this.addNewTask}>EKLE</button>
+                <button className="task-add-window-button" onClick={this.addNewTask}>EKLE</button>
             </div>
         )
     };
